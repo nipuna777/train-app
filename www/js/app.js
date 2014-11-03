@@ -1,10 +1,12 @@
 $(document).ready(function() {
 
     var map;
-    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoSuccess);
-    function onGeoSuccess(position) {
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
+
+    //navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoSuccess);
+
+
+        lat = 12;
+        lon = 12;
         var currentposition = new google.maps.LatLng(lat, lon);
 
         var mapoptions = {
@@ -20,7 +22,6 @@ $(document).ready(function() {
             position: currentposition,
             map: map
         });
-    }
 
     var socket = io.connect('http://localhost:8080');
 
