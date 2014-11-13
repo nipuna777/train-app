@@ -1,5 +1,17 @@
 *{
     box-sizing: border-box;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+.ui-btn-active
+{
+    color: #2F3E46 !important;
+    background: none !important;
+    background-color: #eee !important;
+    text-shadow: 0 /*{a-bup-shadow-x}*/
+    1px /*{a-bup-shadow-y}*/
+    0 /*{a-bup-shadow-radius}*/
+    #ffffff /*{a-bup-shadow-color}*/;
 }
 
 html, body{

@@ -8,8 +8,7 @@
         Nipuna Gunathilake
     </author>
 
-    <!--<preference name="permissions" value="none" />-->
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    <preference name="permissions" value="none" />
 
     <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="default" />
@@ -38,8 +37,6 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.file-transfer" />
-    <gap:plugin name="org.apache.cordova.geolocation" />
-
 
     <gap:plugin name="org.apache.cordova.globalization" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
