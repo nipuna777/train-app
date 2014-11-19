@@ -1,12 +1,14 @@
-document.addEventListener("deviceready", function () {
-
+//document.addEventListener("deviceready", function () {
+$(document).ready(function () {
     var map, marker;
-    var socket = io.connect('http://10.111.36.64:8080');
+    var socket = io.connect('http://nipuna.me:8080');
 
     var latlon = {};
 
     while (!latlon.id) {
-        latlon.id = prompt("Please enter your ID:", "");
+        //latlon.id = prompt("Please enter your ID:", "");
+        latlon.id = 'E101';
+            localStorage.setItem("trainID", latlon.id);
         //latlon.id = "test";
     }
 
@@ -18,7 +20,11 @@ document.addEventListener("deviceready", function () {
 
     map = new google.maps.Map(document.getElementById("map"), mapoptions);
 
-    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoSuccess, {maximumAge: 3000, timeout: 5000, enableHighAccuracy: false});
+    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoSuccess, {
+        maximumAge: 3000,
+        timeout: 5000,
+        enableHighAccuracy: false
+    });
 
     function onGeoSuccess(position) {
         lat = position.coords.latitude;
@@ -32,8 +38,6 @@ document.addEventListener("deviceready", function () {
             map: map
         });
     }
-
-
 
     var first = true;
     var intervalId;
@@ -56,6 +60,7 @@ document.addEventListener("deviceready", function () {
         console.log("position changed");
         $("#status p").text("Tracking active");
         $('#status').removeClass("stopped").addClass("active");
+
         $('#startstop').text("Stop tracking");
 
         latlon.lat = position.coords.latitude;
@@ -105,12 +110,14 @@ document.addEventListener("deviceready", function () {
         socket.emit('sendevent', latlon);
     }
 
-    function sendAlert(msg){
+    function sendAlert(msg) {
         socket.emit('sendalert', msg)
     }
 
     function toggleTimer() {
         if (intervalId) {
+            $('#startstop').buttonMarkup({theme: 'g'});
+
             console.log('stopping');
             clearInterval(intervalId);
             intervalId = null;
@@ -121,6 +128,8 @@ document.addEventListener("deviceready", function () {
             first = true;
         }
         else {
+            $('#startstop').buttonMarkup({theme: 'd'});
+
             console.log('starting');
             startTrack();
         }
@@ -135,11 +144,13 @@ document.addEventListener("deviceready", function () {
         }
     }
 
-    function testfunction(){
+    function testfunction() {
         alert("function triggered");
     }
 
     $('#startstop').on("tap", toggleTimer);
 
     $('#alert').on("click", sendAlert("Some Alert"));
+
+
 });
